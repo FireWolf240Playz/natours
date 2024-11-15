@@ -239,7 +239,7 @@ Pull requests are welcome but please open an issue and discuss what you will do 
 
 ## Known Bugs 🚨
 
-Feel free to email me at lakshman.gope2@gmail.com if you run into any issues or have questions, ideas or concerns.
+Feel free to email me at a.yordanow67@gmail.com if you run into any issues or have questions, ideas or concerns.
 Please enjoy and feel free to share your opinion, constructive criticism, or comments about my work. Thank you! 🙂
 
 ## Future Updates 🪴
