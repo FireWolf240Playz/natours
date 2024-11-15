@@ -1,4 +1,6 @@
 export const displayMap = (locations) => {
+  window.scrollTo(0, 0);
+
   mapboxgl.accessToken =
     "pk.eyJ1IjoiZmlyZXdvbGYyNDBwbGF5eiIsImEiOiJjbTNoNmN3YmswY2I4MmhxemJyZWp2bDczIn0.KpPXEAsEgvD7ecHzwomU2g";
 
@@ -6,6 +8,7 @@ export const displayMap = (locations) => {
     container: "map", // container ID
     style: "mapbox://styles/firewolf240playz/cm3h7dbr9005701s966f7glcq",
     scrollZoom: false,
+    interactive: false,
   });
 
   const bounds = new mapboxgl.LngLatBounds();
@@ -27,7 +30,7 @@ export const displayMap = (locations) => {
       .addTo(map);
 
     // Add popup
-    new mapboxgl.Popup({ offset: 30 })
+    new mapboxgl.Popup({ offset: 30, focusAfterOpen: false })
       .setLngLat(loc.coordinates)
       .setHTML(`<p>Day ${loc.day}: ${loc.description}</p>`)
       .addTo(map);

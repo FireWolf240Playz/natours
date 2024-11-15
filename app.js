@@ -48,10 +48,11 @@ app.use(
         connectSrc: [
           "'self'",
           "https://api.mapbox.com",
-          "https://events.mapbox.com", // Add this line
+          "https://events.mapbox.com",
           "http://127.0.0.1:8000",
+          "http://127.0.0.1:3000", // Add this line
           "ws://localhost:*",
-          "http://127.0.0.1:3000",
+          "ws://127.0.0.1:*",
         ],
       },
     },
@@ -60,8 +61,8 @@ app.use(
 
 app.use(
   cors({
-    origin: "http://localhost:8000", // Your frontend URL
-    credentials: true, // This is needed to allow cookies to be sent
+    origin: "http://127.0.0.1:8000/",
+    credentials: true,
   }),
 );
 
@@ -105,7 +106,6 @@ app.use(
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  console.log(req.cookies);
   next();
 });
 
@@ -114,10 +114,6 @@ app.use("/", viewRouter);
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", useRouter);
 app.use("/api/v1/reviews", reviewRouter);
-
-app.all("*", (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-});
 
 app.use(globalErrorHandler);
 
