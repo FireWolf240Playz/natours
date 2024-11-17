@@ -14,6 +14,7 @@ const globalErrorHandler = require("./controllers/errorController");
 const tourRouter = require("./routes/tourRouters");
 const useRouter = require("./routes/userRouters");
 const reviewRouter = require("./routes/reviewRouters");
+const bookingRouter = require("./routes/bookingRouters");
 const viewRouter = require("./routes/viewRoutes");
 
 const app = express();
@@ -35,6 +36,7 @@ app.use(
           "'self'",
           "https://api.mapbox.com",
           "https://cdn.jsdelivr.net",
+          "https://js.stripe.com",
           "blob:",
           "'unsafe-eval'",
         ],
@@ -50,10 +52,11 @@ app.use(
           "https://api.mapbox.com",
           "https://events.mapbox.com",
           "http://127.0.0.1:8000",
-          "http://127.0.0.1:3000", // Add this line
+          "http://127.0.0.1:3000",
           "ws://localhost:*",
           "ws://127.0.0.1:*",
         ],
+        frameSrc: ["'self'", "https://js.stripe.com"],
       },
     },
   }),
@@ -114,6 +117,7 @@ app.use("/", viewRouter);
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", useRouter);
 app.use("/api/v1/reviews", reviewRouter);
+app.use("/api/v1/bookings", bookingRouter);
 
 app.use(globalErrorHandler);
 
