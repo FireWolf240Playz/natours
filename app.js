@@ -7,6 +7,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
+const compression = require("compression");
 const cors = require("cors");
 
 const AppError = require("./utils/appError");
@@ -106,11 +107,7 @@ app.use(
   }),
 );
 
-// Test middleware
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  next();
-});
+app.use(compression);
 
 // 3) ROUTES
 app.use("/", viewRouter);
